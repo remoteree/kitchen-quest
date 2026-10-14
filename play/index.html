@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..900&family=Manrope:wght@400..800&display=swap"><link rel="stylesheet" href="../style.css"><title>A Kitchen Quest challenge</title></head><body><main>
+<a class="mark" href="../"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#f4b63f" d="M8 20c-3 0-5-2.4-5-5.2C3 12 5 10 7.6 10c.9-3.4 4.4-6 8.4-6s7.5 2.6 8.4 6c2.6 0 4.6 2 4.6 4.8S27 20 24 20z"/><rect x="8" y="21" width="16" height="6" rx="2" fill="#f4b63f"/></svg>Kitchen Quest</a>
+<p class="eyebrow" style="margin-top:48px">You've been challenged</p>
+<h1 id="title">Can you beat this score?</h1>
+<p class="lede" id="detail">Open the challenge in Kitchen Quest to play the exact same dish with the same setup.</p>
+<p><a class="btn" id="open" href="#">Open in Kitchen Quest</a></p>
+<p id="note">Don't have the app yet? Kitchen Quest is coming to the App Store.</p>
+<footer><a href="../">Home</a><a href="../privacy.html">Privacy</a><a href="../support.html">Support</a><span>© 2026 Kitchen Quest</span></footer>
+</main>
+<script>
+(function () {
+  var m = location.hash.match(/c=([A-Za-z0-9_-]+)/);
+  var code = m ? m[1] : '';
+  var open = document.getElementById('open');
+  if (!code) { open.style.display = 'none'; return; }
+  open.href = 'kitchenquest://c/' + code;
+  try {
+    var json = atob(code.replace(/-/g, '+').replace(/_/g, '/'));
+    var p = JSON.parse(json.slice(json.indexOf('{')));
+    if (p && p.nickname && typeof p.score === 'number') {
+      document.getElementById('title').textContent = 'Beat ' + p.nickname + "'s " + (p.arcade || p.score) + '.';
+    }
+  } catch (e) {}
+})();
+</script></body></html>

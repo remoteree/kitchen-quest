@@ -1,0 +1,6 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Kitchen Quest</title>
+<script>
+// /kitchen-quest/c/<code> -> /kitchen-quest/play/#c=<code>
+var m = location.pathname.match(/\/c\/([A-Za-z0-9_-]+)/);
+location.replace(m ? '/kitchen-quest/play/#c=' + m[1] : '/kitchen-quest/');
+</script></head><body></body></html>
